@@ -43,7 +43,7 @@ export function addTask(task) {
       </li>`;
 
   taskList.insertAdjacentHTML("afterbegin", html);
-  calcTotalTasks();
+  setTotalTasks();
 
   return { id, text, position: id, completed: false };
 }
@@ -52,6 +52,8 @@ export function removeTask(id) {
   [...document.querySelectorAll(".app__list__element")]
     .find((el) => el.dataset.id == id)
     .remove();
+
+  setTotalTasks();
 
   return id;
 }
