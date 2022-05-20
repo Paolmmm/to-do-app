@@ -1,0 +1,357 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+
+  @media only screen and (max-width: 37.5em) {
+    font-size: 50%;
+  }
+}
+
+body {
+  // line-height: 1;
+  font-weight: 400;
+  font-size: 1.8rem;
+  font-family: "Josefin Sans", sans-serif;
+  color: var(--text-light);
+  position: relative;
+}
+
+:root {
+  --bright-blue: hsl(220, 98%, 61%);
+  --Check-background: linear-gradient(
+    to bottom right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+
+  --white: hsl(0, 0%, 98%);
+  --body-background: hsl(236, 33%, 92%);
+  --list-background: hsl(0, 0%, 98%);
+  --text-light: hsl(236, 9%, 61%);
+  --text-dark: hsl(235, 19%, 35%);
+  --icon-light: hsl(236, 33%, 92%);
+  --icon-dark: hsl(236, 9%, 61%);
+
+  --background-desktop-img: url(/images/bg-desktop-light.jpg);
+  --background-mobile-img: url(/images/bg-mobile-light.jpg);
+}
+
+body.dark {
+  --body-background: hsl(235, 21%, 11%);
+  --list-background: hsl(235, 24%, 19%);
+  --text-light: hsl(233, 14%, 35%);
+  --text-dark: hsl(234, 39%, 85%);
+  --icon-light: hsl(237, 14%, 26%);
+  --icon-dark: hsl(237, 14%, 26%);
+
+  --background-desktop-img: url(/images/bg-desktop-dark.jpg);
+  --background-mobile-img: url(/images/bg-mobile-dark.jpg);
+}
+
+button {
+  border: none;
+  background: none;
+  font-family: inherit;
+  display: inline-block;
+  font-size: inherit;
+  line-height: normal;
+  color: var(--text-light);
+  cursor: pointer;
+}
+
+li {
+  list-style: none;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+ion-icon {
+  font-size: 3rem;
+}
+
+[name="radio-button-off-outline"] {
+  color: var(--icon-light);
+}
+
+%flex {
+  display: flex;
+  align-items: center;
+}
+
+%padding {
+  padding: 2rem;
+}
+
+body {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  background-color: var(--body-background);
+}
+
+.background {
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 40vh;
+  width: 100%;
+  background-image: var(--background-desktop-img);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  @media only screen and (max-width: 35em) {
+    background-image: var(--background-mobile-img);
+  }
+}
+
+.app {
+  position: fixed;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 60rem;
+  min-width: 32rem;
+  padding: 0 2rem;
+
+  &__header {
+    @extend %flex;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+
+    & > * {
+      color: var(--white);
+    }
+
+    &__theme-btn {
+      font-size: 2rem;
+      transition: 0.2s transform;
+
+      &:active {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &__input {
+    @extend %flex;
+    @extend %padding;
+    background-color: var(--list-background);
+    margin-bottom: 2.5rem;
+    border-radius: 5px;
+
+    ion-icon {
+      margin-right: 0.6rem;
+    }
+
+    &__content {
+      font-family: inherit;
+      font-size: inherit;
+      border: none;
+      width: 80%;
+      outline: none;
+      background-color: var(--list-background);
+      color: var(--text-dark);
+
+      // &::placeholder {
+      // }
+    }
+
+    &__submit-btn {
+      margin-left: auto;
+    }
+  }
+
+  &__list {
+    background-color: var(--list-background);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    height: 33.6rem;
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &__element {
+      @extend %flex;
+      @extend %padding;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--icon-light);
+      color: var(--text-dark);
+      cursor: pointer;
+
+      label {
+        @extend %flex;
+        cursor: pointer;
+
+        ion-icon {
+          margin-right: 0.6rem;
+          position: relative;
+        }
+
+        [name="radio-button-off-outline"] {
+          @media (hover: hover) and (pointer: fine) {
+            &:hover {
+              color: transparent;
+
+              &::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background: var(--Check-background);
+                border-radius: 100px;
+              }
+
+              &::after {
+                content: "";
+                position: absolute;
+                width: 80%;
+                height: 80%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: var(--list-background);
+                border-radius: 100px;
+              }
+            }
+          }
+        }
+
+        [name="checkmark-outline"] {
+          color: var(--white);
+          --ionicon-stroke-width: 50px;
+          padding: 0.5rem;
+          font-size: 2rem;
+
+          &:before {
+            content: "";
+            position: absolute;
+            background: var(--Check-background);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            border-radius: 100px;
+          }
+        }
+      }
+
+      [type="checkbox"]:checked ~ label {
+        text-decoration: line-through;
+        text-decoration-thickness: 2px;
+        color: var(--text-light);
+      }
+
+      &__close-btn {
+        line-height: 0;
+        opacity: 0;
+        visibility: hidden;
+
+        @media only screen and (max-width: 37.5em) {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        ion-icon {
+          color: var(--icon-dark);
+        }
+      }
+
+      @media only screen and (min-width: 37.5em) {
+        &:hover &__close-btn {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+  }
+
+  &__data {
+    @extend %flex;
+    @extend %padding;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: 0 1.8rem 2rem rgba(0, 0, 0, 0.1);
+
+    background-color: var(--list-background);
+
+    .states {
+      padding: 0;
+      display: flex !important;
+
+      @media only screen and (max-width: 37.5em) {
+        display: none !important;
+      }
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &__clear-btn {
+        &:hover {
+          color: var(--text-dark);
+        }
+      }
+    }
+  }
+
+  .states {
+    @extend %padding;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    background-color: var(--list-background);
+    border-radius: 5px;
+
+    @media only screen and (max-width: 37.5em) {
+      display: flex;
+      box-shadow: 0 1.8rem 2rem rgba(0, 0, 0, 0.1);
+
+      & > * {
+        font-weight: 700;
+      }
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      & > *:not(.states--current):hover {
+        color: var(--text-dark);
+      }
+    }
+
+    &--current {
+      color: var(--bright-blue);
+    }
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 6rem;
+  }
+}
+
+.dragging {
+  opacity: 0.5;
+}
+
+.hidden {
+  display: none;
+}

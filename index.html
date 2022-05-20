@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="to do list app" />
+
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="images/favicon/favicon-32x32.png"
+    />
+    <link rel="apple-touch-icon" href="images/favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <link rel="stylesheet" href="sass/main.scss" />
+    <script defer type="module" src="js/controller.js"></script>
+    <title>To do app by Paolm</title>
+  </head>
+  <body>
+    <div class="background"></div>
+    <main class="app">
+      <div class="app__header">
+        <h1 class="app__header__title">T O D O</h1>
+        <button type="button" class="app__header__theme-btn">
+          <ion-icon name="moon-sharp"></ion-icon>
+        </button>
+      </div>
+
+      <form class="app__input">
+        <ion-icon name="radio-button-off-outline"></ion-icon>
+        <input
+          type="text"
+          placeholder="Create a new todo..."
+          class="app__input__content"
+          maxlength="40"
+          required
+        />
+        <button class="app__input__submit-btn" type="submit"></button>
+      </form>
+
+      <ul class="app__list"></ul>
+      <div class="app__data">
+        <p class="app__data__items" data-items=""><span>5</span> items left</p>
+        <div class="states">
+          <button class="states__all states--current" data-task-all="">
+            All
+          </button>
+          <button class="states__active" data-task-active="">Active</button>
+          <button class="states__completed" data-task-completed="">
+            Completed
+          </button>
+        </div>
+        <button class="app__data__clear-btn" data-clear="">
+          Clear completed
+        </button>
+      </div>
+
+      <div class="states">
+        <button class="states__all states--current" data-task-all="">
+          All
+        </button>
+        <button class="states__active" data-task-active="">Active</button>
+        <button class="states__completed" data-task-completed="">
+          Completed
+        </button>
+      </div>
+
+      <footer>Drag and drop to reorder list</footer>
+    </main>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
